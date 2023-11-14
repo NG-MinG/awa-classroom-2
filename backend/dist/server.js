@@ -29,6 +29,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./common/app"));
 const allController = __importStar(require("./common/controllers"));
 const allEvent = __importStar(require("./common/events"));
+const fs_1 = __importDefault(require("fs"));
+if (!fs_1.default.existsSync('./logs')) {
+    fs_1.default.mkdirSync('./logs');
+}
 process.on('uncaughtException', (err) => {
     console.error('Uncaught Exception. Shutting down...');
     console.error(err.name, err.message, err.stack);

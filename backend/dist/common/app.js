@@ -22,8 +22,6 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const chalk_1 = __importDefault(require("chalk"));
-const logger_1 = __importDefault(require("./utils/logger"));
-const console_proxy_1 = __importDefault(require("./services/console.proxy"));
 const error_middleware_1 = __importDefault(require("./middlewares/error.middleware"));
 const cors_config_1 = __importDefault(require("./configs/cors.config"));
 const socket_1 = __importDefault(require("./socket"));
@@ -46,7 +44,7 @@ class Application {
         this.cloudinaryConnection = options.cloudinaryConnection;
         this.appName = `[${process.env.APP_NAME}]`;
         this.appVersion = `${process.env.APP_VERSION}`;
-        console = new Proxy(console, new console_proxy_1.default());
+        // console = new Proxy(console, new ConsoleProxyHandler());
         this.redisConnect(this.redisConnection.uri);
         this.mongoDBConnect(this.mongoConnection.uri, this.mongoConnection.options);
         this.setup();
@@ -64,9 +62,11 @@ class Application {
         this.app.use((0, cookie_parser_1.default)());
         this.app.use(passport_1.default.initialize());
         this.app.use((0, morgan_1.default)(`${chalk_1.default.blue(this.appName)}${chalk_1.default.yellow('[:date]')} ${chalk_1.default.green(':method')} ${chalk_1.default.cyan(':status')} ${chalk_1.default.white(':url')} :res[content-length] - :response-time ms`));
-        this.app.use((0, morgan_1.default)(`${this.appName}[:date] :method :status :url :res[content-length] - :response-time ms`, {
-            stream: new logger_1.default('./logs/access.log').createWritableStream(),
-        }));
+        // this.app.use(
+        //     morgan(`${this.appName}[:date] :method :status :url :res[content-length] - :response-time ms`, {
+        //         stream: new Logger('./logs/access.log').createWritableStream(),
+        //     })
+        // );
         this.controllers.forEach((controller) => {
             this.app.use(`/${this.appVersion}${controller.path}`, controller.router);
         });
