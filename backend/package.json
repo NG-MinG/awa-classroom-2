@@ -6,8 +6,13 @@
   "scripts": {
     "start": "nodemon server.ts",
     "build": "tsc",
+    "add-build": "git add dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "pre-commit": [
+    "build",
+    "add-build"
+  ],
   "author": "Khoa-MinG",
   "license": "ISC",
   "dependencies": {
