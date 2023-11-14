@@ -116,11 +116,12 @@ class Application {
             res.cookie('jwt', 'test', {
                 expires: new Date(Date.now() + Number(process.env.JWT_ACCESS_EXPIRES)), // Cookie expiration time in milliseconds
                 // httpOnly: true, // Make the cookie accessible only through HTTP
-                domain: 'vercel.app',
+                domain: '.vercel.app',
                 sameSite: 'none',
                 secure: true, // Ensure that the cookie is secure in a production environment
             });
-            return res.json({ status: '200 - OK', message: 'Server is running ...' });
+            res.end();
+            // return res.json({ status: '200 - OK', message: 'Server is running ...' });
         });
 
         this.app.all('*', (req, res, next) => {
