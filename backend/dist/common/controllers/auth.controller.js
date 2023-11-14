@@ -45,6 +45,8 @@ class AuthController {
             res.cookie('jwt', accessToken, {
                 expires: new Date(Date.now() + Number(process.env.JWT_ACCESS_EXPIRES)),
                 // httpOnly: true, // Make the cookie accessible only through HTTP
+                domain: 'vercel.app',
+                sameSite: 'none',
                 secure: true, // Ensure that the cookie is secure in a production environment
             });
             return res.status(200).json({
@@ -71,6 +73,8 @@ class AuthController {
             res.cookie('jwt', accessToken, {
                 expires: new Date(Date.now() + Number(process.env.JWT_ACCESS_EXPIRES)),
                 // httpOnly: true, // Make the cookie accessible only through HTTP
+                domain: 'vercel.app',
+                sameSite: 'none',
                 secure: true, // Ensure that the cookie is secure in a production environment
             });
             return res.status(200).json({
@@ -86,6 +90,8 @@ class AuthController {
             res.cookie('jwt', accessToken, {
                 expires: new Date(Date.now() + Number(process.env.JWT_ACCESS_EXPIRES)),
                 // httpOnly: true, // Make the cookie accessible only through HTTP
+                domain: 'vercel.app',
+                sameSite: 'none',
                 secure: true, // Ensure that the cookie is secure in a production environment
             });
             res.redirect(`${process.env.CLIENT_HOST}/auth/login/?u_id=${(_b = req.user) === null || _b === void 0 ? void 0 : _b.id}`);
