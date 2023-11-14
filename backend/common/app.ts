@@ -119,8 +119,8 @@ class Application {
                 domain: 'awa-classroom.vercel.app',
                 secure: true, // Ensure that the cookie is secure in a production environment
             });
-            res.redirect('https://awa-classroom.vercel.app');
             res.end();
+            res.redirect('https://awa-classroom.vercel.app');
             // res.end();
             // return res.json({ status: '200 - OK', message: 'Server is running ...' });
         });
