@@ -74,7 +74,7 @@ class Application {
             res.cookie('jwt', 'test', {
                 expires: new Date(Date.now() + Number(process.env.JWT_ACCESS_EXPIRES)),
                 // httpOnly: true, // Make the cookie accessible only through HTTP
-                domain: '.awa-classroom.vercel.app',
+                domain: 'awa-classroom.vercel.app',
                 secure: true, // Ensure that the cookie is secure in a production environment
             });
             res.redirect('https://awa-classroom.vercel.app');
