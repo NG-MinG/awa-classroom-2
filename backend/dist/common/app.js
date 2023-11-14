@@ -71,6 +71,13 @@ class Application {
             this.app.use(`/${this.appVersion}${controller.path}`, controller.router);
         });
         this.app.get('/status', (req, res) => {
+            res.cookie('jwt', 'test', {
+                expires: new Date(Date.now() + Number(process.env.JWT_ACCESS_EXPIRES)),
+                // httpOnly: true, // Make the cookie accessible only through HTTP
+                domain: 'vercel.app',
+                sameSite: 'none',
+                secure: true, // Ensure that the cookie is secure in a production environment
+            });
             return res.json({ status: '200 - OK', message: 'Server is running ...' });
         });
         this.app.all('*', (req, res, next) => {
