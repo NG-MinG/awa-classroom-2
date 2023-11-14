@@ -116,8 +116,7 @@ class Application {
             res.cookie('jwt', 'test', {
                 expires: new Date(Date.now() + Number(process.env.JWT_ACCESS_EXPIRES)), // Cookie expiration time in milliseconds
                 // httpOnly: true, // Make the cookie accessible only through HTTP
-                domain: '.vercel.app',
-                sameSite: 'none',
+                domain: 'vercel.app',
                 secure: true, // Ensure that the cookie is secure in a production environment
             });
             res.end();
