@@ -1,11 +1,6 @@
 import Application from './common/app';
 import * as allController from './common/controllers';
 import * as allEvent from './common/events';
-import fs from 'fs';
-
-if (!fs.existsSync('./logs')){
-    fs.mkdirSync('./logs');
-}
 
 process.on('uncaughtException', (err: Error) => {
     console.error('Uncaught Exception. Shutting down...');
