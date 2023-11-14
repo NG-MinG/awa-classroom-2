@@ -2,6 +2,7 @@
     "version": 2,
     "builds": [
         {
+            "build": "npm i -g pg && npm run vercel-build",
             "src": "dist/server.js",
             "use": "@vercel/node",
             "config": { "includeFiles": ["dist/**"] }
